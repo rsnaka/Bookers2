@@ -11,6 +11,12 @@
   </head>
 
   <body>
+    <header>
+      <% if user_signed_in? %>
+        <li>
+          <%= link_%>
+        </li>
+    </header>
     <%= yield %>
   </body>
 </html>
