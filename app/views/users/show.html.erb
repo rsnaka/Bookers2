@@ -1,0 +1,55 @@
+<h2>User info</h2>
+
+<%= form_with model: User.new do |f| %>
+
+<%= f.file_field :image, accept: "image/*" %>
+
+<div class="container">
+  <div class="row">
+    <div class="col-lg-4">
+      <table class="table table-striped">
+        <thead>
+          <tr>
+            <th class=header>name</th>
+          </tr>
+          <tr>
+            <th class=header>Introduction</th>
+          </tr>
+        </thead>
+      </table>
+    </div>
+  </div>
+</div>
+<% end %>
+
+<h2>New book</h2>
+
+<%= form_with model: Book.new do |f| %>
+  <p>Title</p>
+  <%= f.text_field :title %>
+
+  <p>Opinion</p>
+  <%= f.text_area :body %>
+
+  <p><%= f.submit 'Create Book'%></p>
+
+<% end %>
+
+<h2>Books</h2>
+
+<%= form_with model: User.new do |f| %>
+<div class="container">
+  <div class="row">
+    <div class="col-lg-4">
+      <table class="table table-striped">
+        <thead>
+          <tr>
+            <th class=header>Title</th>
+            <th class=header>Opinion</th>
+          </tr>
+        </thead>
+      </table>
+    </div>
+  </div>
+</div>
+<% end %>
