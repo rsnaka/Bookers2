@@ -1,24 +1,29 @@
 <h2>User info</h2>
 
-<%= form_with model: User.new do |f| %>
-
   <% if @user.image.attached? %>
     <%= image_tag @user.image, size: "150x150" %>
   <% else %>
     <%= image_tag 'no_image', size: "150x150" %>
   <% end %>
 
-  <table class="table table-striped">
-    <thead>
-      <tr>
-        <th class=header>name</th>
-      </tr>
-      <tr>
-        <th class=header>Introduction</th>
-      </tr>
-    </thead>
-  </table>
-<% end %>
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-4">
+        <table class="table table-striped">
+          <thead>
+            <tr>
+              <th class=header>name</th>
+            </tr>
+            <tr>
+              <th class=header>Introduction</th>
+            </tr>
+          </thead>
+        </table>
+      </div>
+    </div>
+  </div>
+
+ <%= link_to '<i class="fa-solid fa-user-gear"></i>', usres_edit_path, class: "btn btn-secondary" %>
 
 <h2>New book</h2>
 
@@ -35,14 +40,23 @@
 
 <h2>Books</h2>
 
-<%= form_with model: User.new do |f| %>
+<% @books.each do |book| %>
 
-  <table class="table table-striped">
-    <thead>
-      <tr>
-        <th class=header>Title</th>
-        <th class=header>Opinion</th>
-      </tr>
-    </thead>
-  </table>
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-4">
+        <table class="table table-striped">
+          <thead>
+            <tr>
+              <th><%= image_tag @book.user.get_profile_image(100,100) %></th>
+              <th><%= @book.user.name %></th>
+              <th class=header>Title</th>
+              <th class=header>Opinion</th>
+            </tr>
+          </thead>
+        </table>
+      </div>
+    </div>
+  </div>
 <% end %>
+
