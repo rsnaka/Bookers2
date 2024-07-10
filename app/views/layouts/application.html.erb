@@ -1,5 +1,8 @@
 <!DOCTYPE html>
 <html>
+  <div>
+  <%= flash[:notice] %>
+  </div>
   <head>
     <title>Bookers2</title>
     <%= csrf_meta_tags %>
@@ -58,7 +61,10 @@
       </nav>
     </header>
     <main class="mb-auto">
-    <%= yield %>
+      <% flash.each do |message_type, message| %>
+        <div class="flash-message <%= message_type %>"><%= message %></div>
+      <% end %>
+      <%= yield %>
     </main>
     <footer>
       <div class="container mt-5">

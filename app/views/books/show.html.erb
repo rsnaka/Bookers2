@@ -58,5 +58,8 @@
       </div>
     </div>
   </div>
+  <% if @book.user == current_user %>
+    <%= link_to "Destroy, books_path(@book)", method: :delete %>
+  <% end %>
 <% end %>
 

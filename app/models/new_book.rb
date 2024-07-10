@@ -1,2 +1,3 @@
 class NewBook < ApplicationRecord
+  
 end
