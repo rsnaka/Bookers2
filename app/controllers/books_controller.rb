@@ -32,6 +32,7 @@ class BooksController < ApplicationController
   end
 
   def update
+    is_matching_login_book
     book = Book.find(params[:id])
     book.update(book_params)
     redirect_to book_path(book.id)
@@ -42,14 +43,13 @@ class BooksController < ApplicationController
     else
       render :new
     end
-    is_matching_login_book
   end
 
   def edit
-    @book = Book.find(params[:id])
     is_matching_login_book
+    @book = Book.find(params[:id])
   end
-
+  
   def destroy
     book = book.find(params[:id])
     book.destroy

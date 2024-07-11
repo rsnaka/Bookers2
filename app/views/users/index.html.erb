@@ -1,11 +1,10 @@
-
- <div class="container px-5 px-sm-0">
+<div class="container px-5 px-sm-0">
   <div class="row">
     <div class=col-md-3>
       <h2>User info</h2>
       <% user = User.first %>
       <% if user.image.attached? %>
-        <%= image_tag user.image, size: "150x150" %>
+        <%= image_tag .userimage, size: "150x150" %>
       <% else %>
         <%= image_tag 'no_image', size: "150x150" %>
       <% end %>
@@ -40,7 +39,6 @@
               <input type="submit" name="commit" value="Create book" class="btn btn-success" data-disable-with="Create Book">
             </div>
           </form>
-        </div>
         <div class="col-md-8 offset-md-1">
           <h2>Users</h2>
           <table class="table">
@@ -52,6 +50,7 @@
               </tr>
             </thead>
           </table>
+        </div>
       </div>
     </div>
-  </div>
+</div>
