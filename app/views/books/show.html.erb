@@ -1,7 +1,7 @@
 <h2>User info</h2>
 
-  <% if @user.image.attached? %>
-    <%= image_tag @user.image, size: "150x150" %>
+  <% if @user.profile_image.attached? %>
+    <%= image_tag @user.profile_image, size: "150x150" %>
   <% else %>
     <%= image_tag 'no_image', size: "150x150" %>
   <% end %>
@@ -23,8 +23,9 @@
     </div>
   </div>
 
- <%= link_to '<i class="fa-solid fa-user-gear"></i>', usres_edit_path, class: "btn btn-secondary" %>
-
+<%= link_to edit_user_path, class: "btn btn-secondary" do %>
+  <i class="fa-solid fa-user-gear"></i>
+<% end %>
 <h2>New book</h2>
 
 <%= form_with model: Book.new do |f| %>

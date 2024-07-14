@@ -11,17 +11,10 @@ class BooksController < ApplicationController
     else
       render :new
     end
-
-    @book = Book.new(book_params)
-    if @book.save
-      flash[:notice] = "You have created book successfully"
-      redirect_to book_path(@book.id)
-    else
-      render :new
-    end
   end
 
   def index
+    @book = Book.new
     @books = Book.all
   end
 
@@ -49,7 +42,7 @@ class BooksController < ApplicationController
     is_matching_login_book
     @book = Book.find(params[:id])
   end
-  
+
   def destroy
     book = book.find(params[:id])
     book.destroy
@@ -68,4 +61,5 @@ class BooksController < ApplicationController
       redirect_to books_path
     end
   end
+
 end
