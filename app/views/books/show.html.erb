@@ -1,14 +1,14 @@
-<h2>User info</h2>
 
-  <% if @user.profile_image.attached? %>
-    <%= image_tag @user.profile_image, size: "150x150" %>
-  <% else %>
-    <%= image_tag 'no_image', size: "150x150" %>
-  <% end %>
 
   <div class="container">
     <div class="row">
-      <div class="col-lg-4">
+      <div class="col-md-3">
+        <h2>User info</h2>
+        <% if @user.profile_image.attached? %>
+          <%= image_tag @user.profile_image, size: "150x150" %>
+        <% else %>
+          <%= image_tag 'no_image', size: "150x150" %>
+        <% end %>
         <table class="table table-striped">
           <thead>
             <tr>
@@ -19,48 +19,47 @@
             </tr>
           </thead>
         </table>
+        <%= link_to edit_user_path, class: "btn btn-secondary" do %>
+          <i class="fa-solid fa-user-gear"></i>
+        <% end %>
+      <h2>New book</h2>
+      <%= form_with model: Book.new do |f| %>
+        <p>Title</p>
+        <%= f.text_field :title %>
+        <p>Opinion</p>
+        <%= f.text_area :body %>
+        <p><%= f.submit 'Create Book'%></p>
+      <% end %>
       </div>
+      <div class="col-md-8 offset-md-1">
+  		<h2>Book detail</h2>
+  		<table class="table">
+  		  <tbody>
+  		    <tr>
+  		      <td>
+  		        <%= link_to user_path(@user.id) do %>
+  		          <%= image_tag @user.profile_image, size: "150x150" %><br>
+  		          <%= @user.name %>
+  		        <% end %>
+  		      </td>
+            <td>
+              <%=link_to book_path(@book.id) do %>
+              <p><%= @book.title  %></p>
+              <% end %>
+            </td>
+
+            <td><p><%= @book.body %></p></td>
+            <td><%= link_to edit_book_path(@book.id) do %>
+                  Edit
+                <% end %>
+            </td>
+            <td><%= link_to book_path(@book.id), method: :delete, "data-confirm" => "本当に削除しますか？" do %>
+                  Destroy
+                <% end %>
+            </td>
+        </tr>
+      </tbody>
+      </table>
     </div>
   </div>
-
-<%= link_to edit_user_path, class: "btn btn-secondary" do %>
-  <i class="fa-solid fa-user-gear"></i>
-<% end %>
-<h2>New book</h2>
-
-<%= form_with model: Book.new do |f| %>
-  <p>Title</p>
-  <%= f.text_field :title %>
-
-  <p>Opinion</p>
-  <%= f.text_area :body %>
-
-  <p><%= f.submit 'Create Book'%></p>
-
-<% end %>
-
-<h2>Books</h2>
-
-<% @books.each do |book| %>
-
-  <div class="container">
-    <div class="row">
-      <div class="col-lg-4">
-        <table class="table table-striped">
-          <thead>
-            <tr>
-              <th><%= image_tag @book.user.get_profile_image(100,100) %></th>
-              <th><%= @book.user.name %></th>
-              <th class=header>Title</th>
-              <th class=header>Opinion</th>
-            </tr>
-          </thead>
-        </table>
-      </div>
-    </div>
-  </div>
-  <% if @book.user == current_user %>
-    <%= link_to "Destroy, books_path(@book)", method: :delete %>
-  <% end %>
-<% end %>
-
+</div>
