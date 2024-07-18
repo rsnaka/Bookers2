@@ -1,12 +1,14 @@
 class UsersController < ApplicationController
   def index
-    @user = User.find(params[:id])
+    @user = current_user
+    @users = User.all
+    @books = @user.books
   end
 
   def show
-    @user = User.find(params[:id])
-    @user = @book.user
+    @user = current_user
     @books = @user.books
+
   end
 
   def edit
@@ -16,15 +18,14 @@ class UsersController < ApplicationController
 
   def update
     is_matching_login_user
-    user = User.find(params[:id])
-    user.update(user_params)
-    redirect_to user_path(user.id)
-    @user = User.new(book_params)
+    @user = User.find(params[:id])
+    
     if @user.save
       flash[:notice] = "You have updated user successfully."
       redirect_to user_path(@user.id)
     else
-      render :new
+      @user = User.all
+      render :show
     end
   end
 

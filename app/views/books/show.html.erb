@@ -1,68 +1,37 @@
-
-
-  <div class="container px-5 px-sm-0">
-    <div class="row">
-      <div class="col-md-3">
-        <h2>User info</h2>
-        <% if @user.profile_image.attached? %>
-          <%= image_tag @user.profile_image, size: "150x150" %>
-        <% else %>
-          <%= image_tag 'no_image', size: "150x150" %>
-        <% end %>
-        <table class="table table-striped">
-          <thead>
-            <tr>
-              <th class=header>name </th>
-              <th><%= @user.name%></th>
-            </tr>
-            <tr>
-              <th class=header>Introduction</th>
-              <th><%= @user.introduction %></th>
-            </tr>
-          </thead>
-        </table>
-        <%= link_to edit_user_path, class: "btn btn-secondary btn-block" do %>
-          <i class="fa-solid fa-user-gear"></i>
-        <% end %>
-      <h2>New book</h2>
-      <%= form_with model: Book.new do |f| %>
-        <p>Title</p>
-        <%= f.text_field :title %>
-        <p>Opinion</p>
-        <%= f.text_area :body %>
-        <button type="button" class="btn btn-success">Create Book</button>
-      <% end %>
-      </div>
-      <div class="col-md-8 offset-md-1">
-  		<h2>Book detail</h2>
-  		<table class="table">
-  		  <tbody>
-  		    <tr>
-  		      <td>
-  		        <%= link_to user_path(@user.id) do %>
-  		          <%= image_tag @user.profile_image, size: "150x150" %><br>
-  		          <%= @user.name %>
-  		        <% end %>
-  		      </td>
+<div class="mt-5 container">
+  <div class="row">
+    <%= render 'list', book: @book, user: @user %>
+    <div class="col-md-8 offset-md-1">
+  	<h2>Book detail</h2>
+    	<table class="table">
+    	  <tbody>
+    	    <tr>
+    	      <td>
+    	        <%= link_to user_path(@user.id) do %>
+    	          <%= image_tag @user.profile_image, size: "150x150" %><br>
+    	          <%= @user.name %>
+    	        <% end %>
+    	      </td>
             <td>
               <%=link_to book_path(@book.id) do %>
                 <%= @book.title  %>
               <% end %>
             </td>
-
-            <td><p><%= @book.body %></p></td>
-            
-            <td><%= link_to edit_book_path(@book.id) do %>
+  
+            <td><%= @book.body %></td>
+  
+            <td><%= link_to edit_book_path(@book.id), class: "btn btn-success" do %>
                   Edit
                 <% end %>
             </td>
-            
-            <td><%= link_to book_path(@book.id), method: :delete, "data-confirm" => "本当に削除しますか？" do %>
+  
+            <td><%= link_to book_path(@book.id), class: "btn btn-danger", method: :delete, "data-confirm" => "本当に削除しますか？" do %>
                   Destroy
                 <% end %>
             </td>
-        </tr>
-      </tbody>
+          </tr>
+        </tbody>
       </table>
     </div>
   </div>
+</div>

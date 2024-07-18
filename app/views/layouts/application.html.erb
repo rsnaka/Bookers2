@@ -68,10 +68,7 @@
         </div>
       </nav>
     </header>
-    <div>
-      <%= flash[:notice] %>
-    </div>
-    <main class="mb-auto">
+    <main >
       <% flash.each do |message_type, message| %>
         <div class="flash-message <%= message_type %>"><%= message %></div>
       <% end %>
