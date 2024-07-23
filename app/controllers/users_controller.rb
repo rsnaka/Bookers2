@@ -19,11 +19,13 @@ class UsersController < ApplicationController
   def update
     is_matching_login_user
     @user = User.find(params[:id])
-    
+    @user = User.new(user_params)
+    @user.user_id = current_user.id
     if @user.save
       flash[:notice] = "You have updated user successfully."
       redirect_to user_path(@user.id)
     else
+      @user = current_user
       @user = User.all
       render :show
     end
