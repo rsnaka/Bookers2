@@ -42,16 +42,16 @@
           </tr>
         </thead>
         <tbody>
-        <% @books.each do |book|%>
+        <% @users.each do |user|%>
           <tr>
             <td>
-  		        <%= link_to user_path(book.user.id) do %>
-  		          <%= image_tag book.user.profile_image, size: "100x100" %><br>
+  		        <%= link_to user_path(user.id) do %>
+  		          <%= image_tag user.get_profile_image(100, 100) %><br>
   		        <% end %>
   		      </td>
-            <td><%= book.user.name %></td>
-            <td><%= link_to user_path(@user.id) do %>
-                  show
+            <td><%= user.name %></td>
+            <td><%= link_to user_path(user.id) do %>
+                  Show
                 <% end %>
             </td>
           </tr>

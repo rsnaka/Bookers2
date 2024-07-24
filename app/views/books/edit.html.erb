@@ -5,7 +5,7 @@
   <div class="row">
     <div class="col-sm-12-col-md-8 col-lg-5 px-5 px-sm-0 mx-auto" >
       <h2>Editing Book</h2>
-      
+
       <% if @book.errors.any? %>
         <%= @book.errors.count %>error rpohibited this obj from being saved:
         <ul>
@@ -14,23 +14,23 @@
           <% end %>
         </ul>
       <% end %>
-      
+
       <%= form_with model: @book do |f| %>
-      
+
         <h5>Tilte</h5>
         <%= f.text_field :title, :size=>"60" %>
-      
+
         <h5>Opinion</h5>
         <%= f.text_area :body, :size=>"60" %>
-      
+
         <%= f.submit 'Update Book', class:"btn btn-success" %>
-      
+
         <p>
-          <%= link_to "show", book_path(@book.id) %> /
-          <%= link_to "back", books_path %>
+          <%= link_to "Show", book_path(@book.id) %> /
+          <%= link_to "Back", books_path %>
         </p>
-      
+
       <% end %>
-    </div> 
-  </div>   
+    </div>
+  </div>
 </div>

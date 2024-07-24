@@ -1,36 +1,6 @@
 <div class="container px-5 px-sm-0">
   <div class="row">
-    <div class="col-md-3">
-      <h2>User info</h2>
-        <% if @user.profile_image.attached? %>
-          <%= image_tag @user.profile_image, size: "150x150" %>
-        <% else %>
-          <%= image_tag 'no_image', size: "150x150" %>
-        <% end %>
-        <table class="table table-striped">
-          <thead>
-            <tr>
-              <th class=header>name </th>
-              <th><%= @user.name%></th>
-            </tr>
-            <tr>
-              <th class=header>Introduction</th>
-              <th><%= @user.introduction %></th>
-            </tr>
-          </thead>
-        </table>
-        <%= link_to edit_user_path, class: "btn btn-outline-secondary btn-block" do %>
-          <i class="fa-solid fa-user-gear"></i>
-        <% end %>
-      <h2>New book</h2>
-      <%= form_with model: Book.new do |f| %>
-        <p>Title</p>
-        <%= f.text_field :title %>
-        <p>Opinion</p>
-        <%= f.text_area :body %>
-        <%= f.submit "Create Book", class:"btn btn-success" %>
-      <% end %>
-    </div>
+    <%= render 'books/list', book: @book_new, user: @user %>
     <div class="col-md-8 offset-md-1">
     <h2>Books</h2>
       <table class="table table-hover table-inverse">
@@ -46,8 +16,7 @@
           <tr>
             <td>
   		        <%= link_to user_path(book.user.id) do %>
-  		          <%= image_tag book.user.profile_image, size: "150x150" %><br>
-  		          <%= book.user.name %>
+  		          <%= image_tag book.user.profile_image, size: "100x100" %>
   		        <% end %>
   		      </td>
             <td>

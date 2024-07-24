@@ -1,6 +1,6 @@
 <div class="mt-5 container">
   <div class="row">
-    <%= render 'list', book: @book, user: @user %>
+    <%= render 'list', book: @book_new, user: @user %>
     <div class="col-md-8 offset-md-1">
   	<h2>Book detail</h2>
     	<table class="table">
@@ -8,26 +8,32 @@
     	    <tr>
     	      <td>
     	        <%= link_to user_path(@user.id) do %>
-    	          <%= image_tag @user.profile_image, size: "150x150" %><br>
+    	          <%= image_tag @user.profile_image, size: "100x100" %><br>
     	          <%= @user.name %>
     	        <% end %>
     	      </td>
             <td>
               <%=link_to book_path(@book.id) do %>
-                <%= @book.title  %>
+                <%= @book.title %>
               <% end %>
             </td>
-  
+
             <td><%= @book.body %></td>
-  
-            <td><%= link_to edit_book_path(@book.id), class: "btn btn-success" do %>
+
+            <td>
+              <%if @user == current_user %>
+                <%= link_to edit_book_path(@book.id), class: "btn btn-success" do %>
                   Edit
                 <% end %>
+              <% end %>
             </td>
-  
-            <td><%= link_to book_path(@book.id), class: "btn btn-danger", method: :delete, "data-confirm" => "本当に削除しますか？" do %>
+
+            <td>
+              <%if @user == current_user %>
+                <%= link_to book_path(@book.id), class: "btn btn-danger", method: :delete, "data-confirm" => "本当に削除しますか？" do %>
                   Destroy
                 <% end %>
+              <% end %>
             </td>
           </tr>
         </tbody>
